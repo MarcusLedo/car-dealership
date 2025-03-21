@@ -1,11 +1,9 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { initializeApp, cert } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+import serviceAcc from "/home/callisto/Documents/my-car-dealership-f5e0d-firebase-adminsdk-fbsvc-a3d3c7c755.json" assert { type: "json" };
 import dotenv from "dotenv";
 
 dotenv.config({ path: "../.env" });
-
-const { API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, SENDER_ID, APP_ID } =
-  process.env;
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -16,19 +14,31 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 
-let app;
-let firestoreDB;
+initializeApp({
+  credential: cert(serviceAcc),
+});
 
-console.log(firebaseConfig.apiKey);
-console.log(firebaseConfig);
+let db;
 
-function initializeFirebaseApp() {
-  app = initializeApp(firebaseConfig);
-  firestoreDB = getFirestore();
+const testData = {
+  totalValue: 2302,
+  seller: "IO",
+  discount: 203,
+};
+
+initializeFirebaseDB();
+addData(testData);
+
+function initializeFirebaseDB() {
+  try {
+    db = getFirestore();
+  } catch (err) {
+    console.log("Oh no! " + err);
+  }
 }
 
-function getFirebaseApp() {
-  return app;
+async function addData(data) {
+  const res = await db.collection("transactions").add(data);
 }
 
-export { getFirebaseApp, initializeFirebaseApp };
+export { addData };
