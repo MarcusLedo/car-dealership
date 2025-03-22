@@ -8,14 +8,10 @@ initializeApp({
 
 let db;
 
-const testData = {
-  totalValue: 345,
-  seller: "LuzaII",
-  discount: 12,
-};
-
 initializeFirebaseDB();
-addData(testData);
+main();
+
+async function main() {}
 
 function initializeFirebaseDB() {
   try {
@@ -29,4 +25,16 @@ async function addData(data) {
   const res = await db.collection("transactions").add(data);
 }
 
-export { addData };
+async function getData() {
+  const transactionRef = db.collection("transactions");
+  const snapshot = await transactionRef.get();
+  const data = [];
+
+  snapshot.forEach((doc) => {
+    data.push(doc.data());
+  });
+
+  return data;
+}
+
+export { addData, getData };

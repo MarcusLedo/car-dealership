@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transactions</title>
+  </head>
+  <body>
+    <h1>Transactions</h1>
+    <main>
+      <ul>
+        <%for(const transaction of data){%>
+        <li>
+          <b>Seller:</b> <%= transaction.seller %> // <b>Value:</b> <%=
+          transaction.totalValue %> // <b>Discount:</b> <%= transaction.discount
+          %>
+        </li>
+        <%}%>
+      </ul>
+      <a href="/transaction/new">Add transaction</a>
+    </main>
+  </body>
+</html>

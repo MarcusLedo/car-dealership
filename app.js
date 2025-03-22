@@ -1,4 +1,4 @@
-import { addData } from "./DB/firebase.js";
+import { addData, getData } from "./DB/firebase.js";
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,6 +13,18 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   console.log("Here!");
   res.render("home");
+});
+
+app.get("/transactions", async (req, res) => {
+  //List all transaction in the DB
+  const data = await getData();
+  console.log(data);
+
+  res.render("transactions", { data });
+});
+
+app.get("/transactions/new", (req, res) => {
+  res.render("newTransaction");
 });
 
 app.listen(3000, () => {
