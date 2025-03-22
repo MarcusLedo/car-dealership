@@ -1,0 +1,27 @@
+body {
+  background-color: #6c584c;
+  color: #f0ead2;
+}
+
+.transaction-form {
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.form-elem {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.btn-field {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  flex: 0.12;
+}
