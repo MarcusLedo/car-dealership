@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a transaction</title>
+  </head>
+  <body>
+    <h1>Add a Transaction</h1>
+    <main>
+      <form action="/transactions" method="POST">
+        <div class="form-elem seller-field">
+          <label for="seller">Seller</label>
+          <input id="seller" type="text" name="seller" placeholder="Name" />
+        </div>
+        <div class="form-elem value-field">
+          <label for="value">Total Value (R$)</label>
+          <input
+            id="value"
+            type="number"
+            name="totalValue"
+            step="0.01"
+            placeholder="$$$"
+          />
+        </div>
+        <div class="form-elem discount-field">
+          <label for="discount">Discount (R$)</label>
+          <input
+            id="discount"
+            type="number"
+            name="discount"
+            step="0.01"
+            placeholder="$$$"
+          />
+        </div>
+
+        <div class="form-elem btn-field">
+          <button type="submit">Add</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
